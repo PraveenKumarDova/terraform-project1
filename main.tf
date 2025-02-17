@@ -5,13 +5,13 @@ terraform {
       version = "5.87.0"
     }
   }
-  backend "s3" {
-    bucket = "tfstate-bkt1"
-    key = "terraform.tfstate"
-    region = "eu-west-2"
-    dynamodb_table = "aws-table"
-    
-  }
+  # backend "s3" {
+  #   bucket = "tfstate-bkt1"
+  #   key = "terraform.tfstate"
+  #   region = "eu-west-2"
+  #   dynamodb_table = "aws-table"
+
+  # }
 }
 
 provider "aws" {
@@ -55,7 +55,7 @@ resource "aws_instance" "app_server" {
   instance_type = var.instance_type
 
   tags = {
-    Name = "app_server"
+    Name = "app_server_${terraform.workspace}"
   }
 
 }
